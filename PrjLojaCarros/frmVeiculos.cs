@@ -38,11 +38,71 @@ namespace PrjLojaCarros
             
         }
 
+        private void carregaTudoTipos()
+        {
+            dtTipos = new DataTable();
+            string sql = "Select * from tblTipoVeiculo";
+            SqlConnection con = new SqlConnection(connectionString);
+            SqlCommand cmd = new SqlCommand(sql, con);
+            cmd.CommandType = CommandType.Text;
+            SqlDataReader reader;
+            con.Open();
+            try
+            {
+                using (reader = cmd.ExecuteReader())
+                {
+                    dtTipos.Load(reader);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro: " + ex.ToString());
+            }
+            finally
+            {
+                con.Close();
+            }
+            cmBoxTipo.DataSource = dtTipos;
+            cmBoxTipo.DisplayMember = "tipoVeiculo";
+            cmBoxTipo.ValueMember = "codTipoVeiculo";
+
+        }
+
+        private void carregaTudoMarca()
+        {
+            dtMarcas = new DataTable();
+            string sql = "Select * from tblMarca";
+            SqlConnection con = new SqlConnection(connectionString);
+            SqlCommand cmd = new SqlCommand(sql, con);
+            cmd.CommandType = CommandType.Text;
+            SqlDataReader reader;
+            con.Open();
+            try
+            {
+                using (reader = cmd.ExecuteReader())
+                {
+                    dtMarcas.Load(reader);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro: " + ex.ToString());
+            }
+            finally
+            {
+                con.Close();
+            }
+            cmBoxMarca.DataSource = dtMarcas;
+            cmBoxMarca.DisplayMember = "marcaVeiculo";
+            cmBoxMarca.ValueMember = "codMarca";
+
+        }
+
         private void carregaComboTipo()
         {
             dtTipos = new DataTable();
             string sql = "Select * from tblTipoVeiculo Where codTipoVeiculo=" +
-                dtVeiculos.Rows[registroAtual][4].ToString();
+                dtVeiculos.Rows[registroAtual][3].ToString();
             SqlConnection con = new SqlConnection(connectionString);
             SqlCommand cmd = new SqlCommand(sql, con);
             cmd.CommandType = CommandType.Text;
@@ -72,7 +132,7 @@ namespace PrjLojaCarros
         {
             dtMarcas = new DataTable();
             string sql = "Select * from tblMarca Where codMarca=" +
-                dtVeiculos.Rows[registroAtual][3].ToString();
+                dtVeiculos.Rows[registroAtual][4].ToString();
             SqlConnection con = new SqlConnection(connectionString);
             SqlCommand cmd = new SqlCommand(sql, con);
             cmd.CommandType = CommandType.Text;
@@ -175,5 +235,130 @@ namespace PrjLojaCarros
             }
 
         }
+
+        private void btnNovo_Click(object sender, EventArgs e)
+        {
+            novo = true;
+            txtModelo.Enabled = true;
+            txtModelo.Clear();
+            txtAno.Enabled = true;
+            txtAno.Clear();
+            cmBoxTipo.Enabled = true;
+            cmBoxTipo.SelectedIndex = 0;
+            cmBoxMarca.Enabled = true;
+            cmBoxTipo.SelectedIndex = 0;
+
+            txtModelo.Enabled = true;
+            txtAno.Enabled = true;
+            cmBoxTipo.Enabled = true;
+            cmBoxMarca.Enabled = true;
+            btnSalvar.Enabled = true;
+            btnNovo.Enabled = false;
+            btnPrimeiro.Enabled = false;
+            btnProximo.Enabled = false;
+            btnUltimo.Enabled = false;
+            btnAnterior.Enabled = false;
+            btnExcluir.Enabled = false;
+            carregaTudoTipos();
+            carregaTudoMarca();
+            cmBoxMarca.SelectedIndex = 0;
+            btnAlterar.Enabled = false;
+            txtCodVeiculo.Clear();
+        }
+
+        private void btnSalvar_Click(object sender, EventArgs e)
+        {
+
+            if (novo)
+            {
+                string sql = "insert into tblVeiculo (modeloVeiculo, " +
+                    "anoVeiculo, codTipoVeiculo, codMarca) values (' " +
+                    txtModelo.Text + " ' , " + txtAno.Text +
+                    ",  " + cmBoxTipo.SelectedValue.ToString() +
+                    " , ' " + cmBoxMarca.SelectedValue.ToString() + " ')";
+                SqlConnection con = new SqlConnection(connectionString);
+                SqlCommand cmd = new SqlCommand(sql, con);
+                cmd.CommandType = CommandType.Text;
+                con.Open();
+                try
+                {
+                    int i = cmd.ExecuteNonQuery();
+                    if (i > 0)
+                    {
+                        MessageBox.Show("Veículo cadastrado com sucesso!");
+                        this.Form1_Load(this, e);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Erro: " + ex.ToString());
+                }
+                finally
+                {
+                    con.Close();
+                }
+                txtCodVeiculo.Enabled = false;
+                txtAno.Enabled = false;
+                cmBoxTipo.Enabled = false;
+                cmBoxMarca.Enabled = false;
+
+                btnSalvar.Enabled = false;
+                btnNovo.Enabled = true;
+                btnAlterar.Enabled = true;
+                btnExcluir.Enabled = true;
+
+                btnPrimeiro.Enabled = true;
+                btnAnterior.Enabled = true;
+                btnProximo.Enabled = true;
+                btnUltimo.Enabled = true;
+            }
+            else
+            {
+                string sql = "update tblVeiculo set modelo='" + txtModelo.Text +
+                    " ', anoVeiculo= " + txtAno.Text +
+                    ", codTipoVeiculo=" + cmBoxTipo.SelectedValue.ToString() +
+                    ", codMarca='" + cmBoxMarca.Text + "' where codVeiculo=" + txtCodVeiculo.Text;
+                SqlConnection con = new SqlConnection(connectionString);
+                SqlCommand cmd = new SqlCommand(sql, con);
+                cmd.CommandType = CommandType.Text;
+                con.Open();
+                try
+                {
+                    int i = cmd.ExecuteNonQuery();
+                    if (i > 0)
+                    {
+                        MessageBox.Show("Filme alterado com sucesso");
+                        this.Form1_Load(this, e);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Erro: " + ex.ToString());
+                }
+                finally
+                {
+                    con.Close();
+                }
+                txtCodVeiculo.Enabled = false;
+                txtAno.Enabled = false;
+                cmBoxTipo.Enabled = false;
+                cmBoxMarca.Enabled = false;
+
+                btnSalvar.Enabled = false;
+                btnNovo.Enabled = true;
+                btnAlterar.Enabled = true;
+                btnExcluir.Enabled = true;
+
+                btnPrimeiro.Enabled = true;
+                btnAnterior.Enabled = true;
+                btnProximo.Enabled = true;
+                btnUltimo.Enabled = true;
+                dtVeiculos = new DataTable();
+                Form1_Load(this, e);
+            }
+        }
+    
+        
+
     }
 }
