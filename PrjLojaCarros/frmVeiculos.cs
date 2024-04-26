@@ -246,7 +246,7 @@ namespace PrjLojaCarros
             cmBoxTipo.Enabled = true;
             cmBoxTipo.SelectedIndex = 0;
             cmBoxMarca.Enabled = true;
-            cmBoxTipo.SelectedIndex = 0;
+            cmBoxMarca.SelectedIndex = 0;
 
             txtModelo.Enabled = true;
             txtAno.Enabled = true;
@@ -314,10 +314,10 @@ namespace PrjLojaCarros
             }
             else
             {
-                string sql = "update tblVeiculo set modelo='" + txtModelo.Text +
+                string sql = "update tblVeiculo set modeloVeiculo='" + txtModelo.Text +
                     " ', anoVeiculo= " + txtAno.Text +
                     ", codTipoVeiculo=" + cmBoxTipo.SelectedValue.ToString() +
-                    ", codMarca='" + cmBoxMarca.Text + "' where codVeiculo=" + txtCodVeiculo.Text;
+                    ", codMarca='" + cmBoxMarca.SelectedValue.ToString() + "' where codVeiculo=" + txtCodVeiculo.Text;
                 SqlConnection con = new SqlConnection(connectionString);
                 SqlCommand cmd = new SqlCommand(sql, con);
                 cmd.CommandType = CommandType.Text;
@@ -357,8 +357,50 @@ namespace PrjLojaCarros
                 Form1_Load(this, e);
             }
         }
-    
-        
 
+        private void btnExcluir_Click(object sender, EventArgs e)
+        {
+            string sql = "DELETE FROM tblVeiculo WHERE codVeiculo=" + txtCodVeiculo.Text;
+            SqlConnection con = new SqlConnection(connectionString);
+            SqlCommand cmd = new SqlCommand(sql, con);
+            cmd.CommandType = CommandType.Text;
+            con.Open();
+            try
+            {
+                int i = cmd.ExecuteNonQuery();
+                if (i > 0)
+                {
+                    MessageBox.Show("Veículo apagado com sucesso!");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro: " + ex.ToString());
+            }
+            finally { con.Close(); }
+            dtVeiculos = new DataTable();
+            this.Form1_Load(this, e);
+        }
+
+        private void btnAlterar_Click(object sender, EventArgs e)
+        {
+            novo = false;
+            txtModelo.Enabled = true;
+            txtAno.Enabled = true;
+            cmBoxTipo.Enabled = true;
+            cmBoxTipo.SelectedIndex = 0;
+            cmBoxMarca.Enabled = true;
+            cmBoxMarca.SelectedIndex = 0;
+            btnSalvar.Enabled = true;
+            btnNovo.Enabled = false;
+            btnPrimeiro.Enabled = false;
+            btnProximo.Enabled = false;
+            btnUltimo.Enabled = false;
+            btnAnterior.Enabled = false;
+            btnExcluir.Enabled = false;
+            carregaTudoTipos();
+            carregaTudoMarca();
+            btnAlterar.Enabled = false;
+        }
     }
 }
