@@ -18,7 +18,7 @@ namespace PrjLojaCarros
         int registroAtual = 0;
         int totalRegistros = 0;
         DataTable dtVeiculos = new DataTable();
-        String connectionString = @"Server=darnassus\motorhead;Database=db_230570; User Id=230570;Password=fodase123;";
+        String connectionString = @"Server=DBLocadora.mssql.somee.com;Database=DBLocadora; User Id=NicolasLeme_SQLLogin_1;Password=wb8xp3tusi;";
         bool novo;
         DataTable dtTipos = new DataTable();
         DataTable dtMarcas = new DataTable();
@@ -248,10 +248,6 @@ namespace PrjLojaCarros
             cmBoxMarca.Enabled = true;
             cmBoxMarca.SelectedIndex = 0;
 
-            txtModelo.Enabled = true;
-            txtAno.Enabled = true;
-            cmBoxTipo.Enabled = true;
-            cmBoxMarca.Enabled = true;
             btnSalvar.Enabled = true;
             btnNovo.Enabled = false;
             btnPrimeiro.Enabled = false;
@@ -327,7 +323,7 @@ namespace PrjLojaCarros
                     int i = cmd.ExecuteNonQuery();
                     if (i > 0)
                     {
-                        MessageBox.Show("Filme alterado com sucesso");
+                        MessageBox.Show("Veículo alterado com sucesso");
                         this.Form1_Load(this, e);
                     }
                 }
@@ -388,9 +384,7 @@ namespace PrjLojaCarros
             txtModelo.Enabled = true;
             txtAno.Enabled = true;
             cmBoxTipo.Enabled = true;
-            cmBoxTipo.SelectedIndex = 0;
             cmBoxMarca.Enabled = true;
-            cmBoxMarca.SelectedIndex = 0;
             btnSalvar.Enabled = true;
             btnNovo.Enabled = false;
             btnPrimeiro.Enabled = false;

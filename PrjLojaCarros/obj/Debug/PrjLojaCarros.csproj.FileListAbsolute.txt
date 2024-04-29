@@ -24,3 +24,16 @@ C:\Users\LabInfo\Desktop\PrjLojaCarros\PrjLojaCarros\obj\Debug\PrjLojaCarros.csp
 C:\Users\LabInfo\Desktop\PrjLojaCarros\PrjLojaCarros\obj\Debug\PrjLojaCarros.csproj.CoreCompileInputs.cache
 C:\Users\LabInfo\Desktop\PrjLojaCarros\PrjLojaCarros\obj\Debug\PrjLojaCarros.exe
 C:\Users\LabInfo\Desktop\PrjLojaCarros\PrjLojaCarros\obj\Debug\PrjLojaCarros.pdb
+C:\Users\nicol\OneDrive\Área de Trabalho\prjlojacarro\PrjLojaCarros\bin\Debug\PrjLojaCarros.exe.config
+C:\Users\nicol\OneDrive\Área de Trabalho\prjlojacarro\PrjLojaCarros\bin\Debug\PrjLojaCarros.exe
+C:\Users\nicol\OneDrive\Área de Trabalho\prjlojacarro\PrjLojaCarros\bin\Debug\PrjLojaCarros.pdb
+C:\Users\nicol\OneDrive\Área de Trabalho\prjlojacarro\PrjLojaCarros\obj\Debug\PrjLojaCarros.csproj.AssemblyReference.cache
+C:\Users\nicol\OneDrive\Área de Trabalho\prjlojacarro\PrjLojaCarros\obj\Debug\PrjLojaCarros.frmTipo.resources
+C:\Users\nicol\OneDrive\Área de Trabalho\prjlojacarro\PrjLojaCarros\obj\Debug\PrjLojaCarros.frmVeiculos.resources
+C:\Users\nicol\OneDrive\Área de Trabalho\prjlojacarro\PrjLojaCarros\obj\Debug\PrjLojaCarros.frmMarca.resources
+C:\Users\nicol\OneDrive\Área de Trabalho\prjlojacarro\PrjLojaCarros\obj\Debug\PrjLojaCarros.frmPrincipal.resources
+C:\Users\nicol\OneDrive\Área de Trabalho\prjlojacarro\PrjLojaCarros\obj\Debug\PrjLojaCarros.Properties.Resources.resources
+C:\Users\nicol\OneDrive\Área de Trabalho\prjlojacarro\PrjLojaCarros\obj\Debug\PrjLojaCarros.csproj.GenerateResource.cache
+C:\Users\nicol\OneDrive\Área de Trabalho\prjlojacarro\PrjLojaCarros\obj\Debug\PrjLojaCarros.csproj.CoreCompileInputs.cache
+C:\Users\nicol\OneDrive\Área de Trabalho\prjlojacarro\PrjLojaCarros\obj\Debug\PrjLojaCarros.exe
+C:\Users\nicol\OneDrive\Área de Trabalho\prjlojacarro\PrjLojaCarros\obj\Debug\PrjLojaCarros.pdb
